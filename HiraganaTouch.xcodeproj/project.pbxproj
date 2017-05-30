@@ -12,9 +12,9 @@
 		2F5847341EDB93DD00288001 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F5847321EDB93DD00288001 /* Main.storyboard */; };
 		2F58473C1EDB9E2E00288001 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58473B1EDB9E2E00288001 /* Characters.swift */; };
 		2F58473E1EDBBAD700288001 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58473D1EDBBAD700288001 /* PopoverViewController.swift */; };
-		2F5847421EDBBE6200288001 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5847411EDBBE6200288001 /* ButtonsView.swift */; };
 		2FBBB00A1EDC06F1002F3A80 /* あ@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FBBB0091EDC06F1002F3A80 /* あ@3x.png */; };
 		2FBBB0381EDCEF59002F3A80 /* MS_CUSTOMBEHAVIOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBB0371EDCEF59002F3A80 /* MS_CUSTOMBEHAVIOR.swift */; };
+		2FBBB03A1EDCFF33002F3A80 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBB0391EDCFF33002F3A80 /* ButtonsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +25,9 @@
 		2F5847351EDB93DD00288001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F58473B1EDB9E2E00288001 /* Characters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		2F58473D1EDBBAD700288001 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
-		2F5847411EDBBE6200288001 /* ButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonsView.swift; path = ../ButtonsView.swift; sourceTree = "<group>"; };
 		2FBBB0091EDC06F1002F3A80 /* あ@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "あ@3x.png"; sourceTree = "<group>"; };
 		2FBBB0371EDCEF59002F3A80 /* MS_CUSTOMBEHAVIOR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MS_CUSTOMBEHAVIOR.swift; path = ../MS_CUSTOMBEHAVIOR.swift; sourceTree = "<group>"; };
+		2FBBB0391EDCFF33002F3A80 /* ButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 				2F58473B1EDB9E2E00288001 /* Characters.swift */,
 				2F58472C1EDB93DD00288001 /* AppDelegate.swift */,
 				2F58473D1EDBBAD700288001 /* PopoverViewController.swift */,
-				2F5847411EDBBE6200288001 /* ButtonsView.swift */,
+				2FBBB0391EDCFF33002F3A80 /* ButtonsView.swift */,
 				2FBBB0091EDC06F1002F3A80 /* あ@3x.png */,
 				2F5847301EDB93DD00288001 /* Assets.xcassets */,
 				2F5847321EDB93DD00288001 /* Main.storyboard */,
@@ -146,8 +146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F5847421EDBBE6200288001 /* ButtonsView.swift in Sources */,
 				2F58473E1EDBBAD700288001 /* PopoverViewController.swift in Sources */,
+				2FBBB03A1EDCFF33002F3A80 /* ButtonsView.swift in Sources */,
 				2F58473C1EDB9E2E00288001 /* Characters.swift in Sources */,
 				2F58472D1EDB93DD00288001 /* AppDelegate.swift in Sources */,
 				2FBBB0381EDCEF59002F3A80 /* MS_CUSTOMBEHAVIOR.swift in Sources */,
