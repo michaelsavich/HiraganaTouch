@@ -9,7 +9,7 @@
 import Cocoa
 
 enum ModifierReaction {
-    case dash, bubble, complex
+    case dash, bubble
 }
 
 @NSApplicationMain
@@ -17,6 +17,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSTouchBarDelegate {
     
     let statusItem = NSStatusBar.system().statusItem(withLength: -2)
     let popover = NSPopover()
+    var popoverVC: PopoverViewController?
     
     var buttons: [NSButton] {
         if let cache = cachedButtons { return cache }
@@ -47,35 +48,68 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSTouchBarDelegate {
             }
         }
     }
-
-    func applicationWillFinishLaunching(_ notification: Notification) {
-//        NSApplication.shared().windows.last!.close()
+    
+    override func flagsChanged(with event: NSEvent) {
+        let flags = event.modifierFlags
+        
+        var reactions: [ModifierReaction] = []
+        
+        if flags.contains(.command) {
+            reactions = [.dash]
+            if flags.contains(.option) {
+                reactions = [.bubble]
+            }
+        }
+        
+        
+        self.reactToModifiers(reactions)
     }
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        UserDefaults.standard.setValue("", forKey: "hiragana")
-        if let button = statusItem.button {
-            button.image = NSImage(named: "あ@3x.png")
-            button.action = #selector(AppDelegate.expandStatusPopover(button:))
-            let sb = NSStoryboard(name: "Main", bundle: nil)
-            let controller = sb.instantiateController(withIdentifier: "menubarApp") as! PopoverViewController
-            popover.contentViewController = controller
+    
+    override func keyDown(with event: NSEvent) {
+        let deleteKey: UInt16 = 51
+        
+        if event.keyCode == deleteKey {
+            var text = ""
+            text =? UserDefaults.standard.string(forKey: "hiragana")
+            
+            if !text.isEmpty {
+                text.remove(at: text.lastIndex)
+                self.updateText(txt: text)
+            }
         }
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        UserDefaults.standard.setValue("", forKey: "hiragana")
+        
+        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { (event: NSEvent) in
+            self.flagsChanged(with: event)
+            return event
+        }
+        
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event: NSEvent) in
+            self.keyDown(with: event)
+            return event
+        }
+        
+        if let button = statusItem.button {
+            button.image = NSImage(named: "あ@3x.png")
+            button.action = #selector(AppDelegate.expandStatusPopover(button:))
+            
+            let sb = NSStoryboard(name: "Main", bundle: nil)
+            let controller = sb.instantiateController(withIdentifier: "menubarApp") as! PopoverViewController
+            popoverVC = controller
+            popover.contentViewController = controller
+        }
     }
-    
     
     func applicationDidResignActive(_ notification: Notification) {
         if popover.isShown {
             popover.close()
-            UserDefaults.standard.setValue("", forKey: "hiragana")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "defaultsDidChange"), object: nil)
         }
     }
+    
     func expandStatusPopover(button:NSButton) {
-        
         if popover.isShown {
             popover.close()
             NSApp.resignFirstResponder()
@@ -85,15 +119,20 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSTouchBarDelegate {
             NSApp.activate(ignoringOtherApps: true)
         }
     }
-
+    
     func performActionForButton(_ button: NSButton) {
         var text = UserDefaults.standard.string(forKey: "hiragana") ?? ""
         text += button.title
-        UserDefaults.standard.setValue(text, forKey: "hiragana")
-        NSPasteboard.general().clearContents()
-        NSPasteboard.general().setString(text, forType: NSPasteboardTypeString)
+        self.updateText(txt: text)
+    }
+    
+    func updateText(txt: String) {
+        UserDefaults.standard.setValue(txt, forKey: "hiragana")
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "defaultsDidChange"), object: nil)
+        NSPasteboard.general().clearContents()
+        NSPasteboard.general().setString(txt, forType: NSPasteboardTypeString)
+        
+        popoverVC?.textField.stringValue = txt
     }
     
     @available(OSX 10.12.2, *)
@@ -107,8 +146,9 @@ class AppDelegate: NSResponder, NSApplicationDelegate, NSTouchBarDelegate {
     @available(OSX 10.12.2, *)
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
         if identifier == .hiraganaKeys {
-            var item = NSCustomTouchBarItem(identifier: identifier)
-            var scrollView = NSScrollView(frame: NSMakeRect(0, 0, 600, 30))
+            let item = NSCustomTouchBarItem(identifier: identifier)
+            let scrollView = NSScrollView(frame: NSMakeRect(0, 0, 600, 30))
+            
             scrollView.documentView = ButtonsView(buttons: self.buttons)
             item.view = scrollView
             return item

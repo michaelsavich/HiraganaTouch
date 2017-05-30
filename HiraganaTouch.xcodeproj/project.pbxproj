@@ -13,8 +13,8 @@
 		2F58473C1EDB9E2E00288001 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58473B1EDB9E2E00288001 /* Characters.swift */; };
 		2F58473E1EDBBAD700288001 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58473D1EDBBAD700288001 /* PopoverViewController.swift */; };
 		2F5847421EDBBE6200288001 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5847411EDBBE6200288001 /* ButtonsView.swift */; };
-		2F5847441EDBC63D00288001 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5847431EDBC63D00288001 /* Operators.swift */; };
 		2FBBB00A1EDC06F1002F3A80 /* あ@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FBBB0091EDC06F1002F3A80 /* あ@3x.png */; };
+		2FBBB0381EDCEF59002F3A80 /* MS_CUSTOMBEHAVIOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBB0371EDCEF59002F3A80 /* MS_CUSTOMBEHAVIOR.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +26,8 @@
 		2F58473B1EDB9E2E00288001 /* Characters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		2F58473D1EDBBAD700288001 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		2F5847411EDBBE6200288001 /* ButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonsView.swift; path = ../ButtonsView.swift; sourceTree = "<group>"; };
-		2F5847431EDBC63D00288001 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		2FBBB0091EDC06F1002F3A80 /* あ@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "あ@3x.png"; sourceTree = "<group>"; };
+		2FBBB0371EDCEF59002F3A80 /* MS_CUSTOMBEHAVIOR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MS_CUSTOMBEHAVIOR.swift; path = ../MS_CUSTOMBEHAVIOR.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +44,7 @@
 		2F5847201EDB93DD00288001 = {
 			isa = PBXGroup;
 			children = (
+				2FBBB0371EDCEF59002F3A80 /* MS_CUSTOMBEHAVIOR.swift */,
 				2F58472B1EDB93DD00288001 /* HiraganaTouch */,
 				2F58472A1EDB93DD00288001 /* Products */,
 			);
@@ -60,7 +61,6 @@
 		2F58472B1EDB93DD00288001 /* HiraganaTouch */ = {
 			isa = PBXGroup;
 			children = (
-				2F5847431EDBC63D00288001 /* Operators.swift */,
 				2F58473B1EDB9E2E00288001 /* Characters.swift */,
 				2F58472C1EDB93DD00288001 /* AppDelegate.swift */,
 				2F58473D1EDBBAD700288001 /* PopoverViewController.swift */,
@@ -150,7 +150,7 @@
 				2F58473E1EDBBAD700288001 /* PopoverViewController.swift in Sources */,
 				2F58473C1EDB9E2E00288001 /* Characters.swift in Sources */,
 				2F58472D1EDB93DD00288001 /* AppDelegate.swift in Sources */,
-				2F5847441EDBC63D00288001 /* Operators.swift in Sources */,
+				2FBBB0381EDCEF59002F3A80 /* MS_CUSTOMBEHAVIOR.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,12 +264,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = QS94W36EXJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HiraganaTouch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = michaelsavich.HiraganaTouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -278,12 +280,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = QS94W36EXJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HiraganaTouch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = michaelsavich.HiraganaTouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

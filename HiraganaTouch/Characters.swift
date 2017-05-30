@@ -16,22 +16,12 @@ func multiLookup<T,U>(key:T,dicts:[T:U]...)-> U? {
     return result
 }
 
-func clean(_ hiragana: Character) -> String {
-    if let result = undashed[§hiragana] {
-        return result
-    }
-    if let result = unbubbled[§hiragana] {
-        return result
-    }
-    return §hiragana
-}
-
-var bases: [String] { //contains any syllable that does not have a counterpart in the other dictionaries
+var bases: [String] { //contains unadorned characters
     if let cache = cachedBases { return cache }
     var result: [String] = []
     for key in syllableOrder {
         guard let character = syllables[key] else { continue }
-        if multiLookup(key: character, dicts: simple,undashed,unbubbled) == nil {
+        if multiLookup(key: character, dicts: undashed,unbubbled) == nil {
             result.append(character)
         }
     }
@@ -68,7 +58,6 @@ let syllableOrder = [
     "su",
     "ku",
     "u",
-    "we",
     "re",
     "me",
     "he",
@@ -139,7 +128,6 @@ let syllables = [
     "he" : "へ",
     "me" : "め",
     "re" : "れ",
-    "we" : "ゑ",
     "ge" : "げ",
     "ze" : "ぜ",
     "de" : "で",
@@ -163,17 +151,6 @@ let syllables = [
     "v"  : "ゔ",
     "n"  : "ん"
 ]
-
-let complex: [String:String] = [:]
-
-
-var simple: [String:String] { //inverse of complex
-    if let cache = cachedSimple { return cache }
-    var result: [String:String] = [:]
-    for (k,v) in complex { result.updateValue(k, forKey: v) }
-    cachedSimple = result; return result;
-}; var cachedSimple: [String:String]?;
-
 
 let dashed = [
     "か" : "が",
